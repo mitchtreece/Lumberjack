@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension DateFormatter {
+internal extension DateFormatter {
     
     /// Initializes a date formatter with a specified format.
     ///

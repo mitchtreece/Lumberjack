@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// A set of logger message components.
+/// A set of message components.
 public struct MessageComponentSet {
     
     /// The component set.

@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// An object representing a logged message.
+/// An object representing a message.
 public struct Message {
     
     /// Representation of the various message statuses.
@@ -68,8 +68,10 @@ public struct Message {
         
     }
     
+    /// The message's status.
     public internal(set) var status: Status = .pending
     
+    /// Flag indicating if the message was logged to the console.
     public var isLogged: Bool {
         return (self.status == .logged)
     }

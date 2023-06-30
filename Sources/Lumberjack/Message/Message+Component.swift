@@ -17,7 +17,7 @@ public extension Message /* Component */ {
         /// of message component spacings.
         public enum Spacing {
             
-            /// An empty (none) spacing.
+            /// An empty (zero) spacing.
             case none
             
             /// A leading spacing.
