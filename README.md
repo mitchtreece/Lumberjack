@@ -2,16 +2,16 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/Version-1.0.0-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
-![iOS](https://img.shields.io/badge/iOS-14+-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
-![Swift](https://img.shields.io/badge/Swift-5-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
-![Xcode](https://img.shields.io/badge/Xcode-14-E0C39F.svg?style=for-the-badge&labelColor=AE7758)
+![Version](https://img.shields.io/badge/Version-1.0.0-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
+![iOS](https://img.shields.io/badge/iOS-14+-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
+![Swift](https://img.shields.io/badge/Swift-5-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
+![Xcode](https://img.shields.io/badge/Xcode-14-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
 
 </div>
 
 # Lumberjack
 
-Lightweight Swift debug logging library 🪵🪓
+Lightweight Swift logging library 🪵🪓
 
 ## Installation
 

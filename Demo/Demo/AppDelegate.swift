@@ -10,11 +10,40 @@ import Lumberjack
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+        
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+                
+        // Lumberjack
         
-        // Override point for customization after application launch.
+        Lumberjack.buildAndRegister(loggerWithId: "custom") { logger in
+            
+            logger.symbol = .just("📱")
+            logger.category = "Custom"
+            logger.hooks = [CustomHook()]
+            
+        }
+                        
+        // Appearance
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        
+        UINavigationBar
+            .appearance()
+            .standardAppearance = appearance
+        
+        UINavigationBar
+            .appearance()
+            .scrollEdgeAppearance = appearance
+        
+        UINavigationBar
+            .appearance()
+            .compactAppearance = appearance
+        
+        // Done
+        
+        DEBUG("did finish launching")
         
         return true
         

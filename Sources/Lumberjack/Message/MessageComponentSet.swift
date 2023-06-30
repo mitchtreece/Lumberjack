@@ -1,59 +1,33 @@
 //
-//  Components.swift
-//  Lumberjack
+//  File.swift
+//  
 //
-//  Created by Mitch Treece on 6/21/23.
+//  Created by Mitch Treece on 6/29/23.
 //
 
 import Foundation
 
-public struct Components {
+/// A set of logger message components.
+public struct MessageComponentSet {
     
-    public enum Component {
-        
-        public enum Spacing {
-            
-            case none
-            case leading(Int)
-            case trailing(Int)
-            case leadingTrailing(Int)
-            
-        }
-                
-        public enum LevelComponent {
-            
-            case name
-            case symbol
-            
-        }
-        
-        case level(LevelComponent,
-                   spacing: Spacing = .none)
-        
-        case category(spacing: Spacing = .none)
-        case timestamp(spacing: Spacing = .none)
-        case module(spacing: Spacing = .none)
-        
-        case file(extension: Bool = false,
-                  spacing: Spacing = .none)
-        
-        case function(parameters: Bool = false,
-                      spacing: Spacing = .none)
-        
-        case line(spacing: Spacing = .none)
-        case message(spacing: Spacing = .none)
-        
-        case text(String)
-        
-    }
+    /// The component set.
+    public let components: [Message.Component]
     
-    public let components: [Component]
-    
-    public init(components: [Component]) {
+    /// Initializes a component set with message components.
+    ///
+    /// - Parameters:
+    ///   - components: The set of message components.
+    public init(components: [Message.Component]) {
         self.components = components
     }
     
-    public func component(at index: Int) -> Component? {
+    /// Retrieves a component at a given index.
+    ///
+    /// - Parameters:
+    ///   - index: The component's index.
+    ///
+    /// - Returns: A message component, or `nil` if not found.
+    public func component(at index: Int) -> Message.Component? {
         
         guard index >= 0,
               index < self.components.count,
@@ -63,10 +37,12 @@ public struct Components {
         
     }
     
+    /// A default set of message components.
+    ///
     /// ```
-    /// {symbol} [{level}] <{category}> {timestamp} {module}.{file}.{func} → {message}
+    /// {symbol} [{level}] <{category}> {timestamp} {module}.{file}::{line} ➡️ {message}
     /// ```
-    public static var `default`: Components {
+    public static var `default`: Self {
         
         return .init(components: [
             
@@ -87,19 +63,22 @@ public struct Components {
             .module(),
             .text("."),
             .file(),
-            .text("."),
-            .function(),
             .text("::"),
             .line(spacing: .trailing(1)),
             
-            .text("→"),
+            .text(Lumberjack.defaultMessageDelimiter),
             .message(spacing: .leading(1))
             
         ])
         
     }
     
-    public static var defaultNoTimestamp: Components {
+    /// A default set of message components without a timestamp.
+    ///
+    /// ```
+    /// {symbol} [{level}] <{category}> {module}.{file}::{line} ➡️ {message}
+    /// ```
+    public static var defaultNoTimestamp: Self {
      
         return .init(components: [
             
@@ -118,19 +97,22 @@ public struct Components {
             .module(),
             .text("."),
             .file(),
-            .text("."),
-            .function(),
             .text("::"),
             .line(spacing: .trailing(1)),
             
-            .text("→"),
+            .text(Lumberjack.defaultMessageDelimiter),
             .message(spacing: .leading(1))
             
         ])
         
     }
     
-    public static var simple: Components {
+    /// A simple set of message components.
+    ///
+    /// ```
+    /// {symbol} [{level}] <{category}> ➡️ {message}
+    /// ```
+    public static var simple: Self {
         
         return .init(components: [
             
@@ -146,14 +128,19 @@ public struct Components {
             
             .category(spacing: .trailing(1)),
             
-            .text("→"),
+            .text(Lumberjack.defaultMessageDelimiter),
             .message(spacing: .leading(1))
             
         ])
         
     }
     
-    public static var raw: Components {
+    /// A raw set of message components.
+    ///
+    /// ```
+    /// {message}
+    /// ```
+    public static var raw: Self {
         
         return .init(components: [
             .message()

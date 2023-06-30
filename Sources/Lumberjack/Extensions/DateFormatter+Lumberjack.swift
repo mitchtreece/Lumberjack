@@ -9,6 +9,9 @@ import Foundation
 
 public extension DateFormatter {
     
+    /// Initializes a date formatter with a specified format.
+    ///
+    /// - parameter dateFormat: The date format.
     convenience init(dateFormat: String) {
         
         self.init()
@@ -16,6 +19,10 @@ public extension DateFormatter {
         
     }
     
+    /// Sets the date formatter's format.
+    ///
+    /// - format: The date format.
+    /// - returns: This date formatter.
     @discardableResult
     func withDateFormat(_ format: String) -> Self {
         
