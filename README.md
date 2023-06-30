@@ -31,7 +31,30 @@ If you're adding Lumberjack as a dependency of your own Swift package, just add 
 
 ## Usage
 
-TODO
+Lumberjack is a lightweight Swift logging library built to help cut (🪓) down on development and (more importantly) debugging time.
+Designed with customization & extensibility, Lumberjack can easily be integrated into any project / workflow.
+
+### Get Started
+
+TODO: Working with the default logger
+
+### Global Logging & Configuration
+
+TODO: Lumberjack global settings (i.e. verbosity) & loggers
+changing default settings, registering shared loggers, etc
+
+### Loggers
+
+TODO: Creating logger instances, high-level customization,
+and logging functions
+
+### Customization
+
+TODO: Detailed logger customization
+
+### Message Hooks
+
+TODO: Message hooks, and the log chain
 
 ## Contributing
 
