@@ -36,6 +36,9 @@ public struct Message {
         
     }
     
+    /// The message's identifier.
+    public let id: String = UUID().uuidString
+    
     /// The message's parent logger identifier.
     public let loggerId: String
     

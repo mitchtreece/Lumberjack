@@ -13,9 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-                
-        // Lumberjack
         
+        // Lumberjack
+                
         Lumberjack.buildAndRegister(loggerWithId: "custom") { logger in
             
             logger.symbol = .just("📱")
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Done
         
-        DEBUG("did finish launching")
+        DEBUG("Hello, world!")
         
         return true
         

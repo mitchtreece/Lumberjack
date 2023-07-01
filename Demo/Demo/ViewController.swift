@@ -30,7 +30,7 @@ class ViewController: UIViewController {
             category: "Instance",
             components: .defaultNoTimestamp
         ))
-        
+                
         Lumberjack
             .anyMessagePublisher
             .sink { [weak self] message in
