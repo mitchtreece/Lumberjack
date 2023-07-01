@@ -1,10 +1,10 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 
 import PackageDescription
 
 let package = Package(
     name: "Lumberjack",
-    platforms: [.iOS(.v14)],
+    platforms: [.iOS(.v15)],
     products: [
 
         .library(
