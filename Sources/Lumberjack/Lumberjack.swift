@@ -23,35 +23,11 @@ fileprivate struct LoggerKey {
 /// Lightweight Swift logging library 🪵🪓
 public struct Lumberjack {
     
-    /// Representation of the various logger verbosity modes.
-    public enum Verbosity {
-        
-        /// An empty (none) verbosity mode.
-        case none
-        
-        /// A verbosity mode over a single log level.
-        case just(LogLevel)
-        
-        /// A verbosity mode up-to (and including) a log level.
-        ///
-        /// ```
-        /// .upTo(.notice) == [.debug, .info, .notice]
-        /// ```
-        case upTo(LogLevel)
-        
-        /// A verbosity mode up-from (and including) a log level.
-        /// ```
-        /// .upFrom(.warning) == [.warning, .error]
-        /// ```
-        case upFrom(LogLevel)
-        
-        /// A full verbosity mode.
-        case full
-        
-    }
-    
-    /// The global logging verbosity level.
-    public static var verbosity: Verbosity = .full
+    /// The global logging verbosity mode.
+    /// If this is set, all loggers will use this
+    /// verbosity, instead of the one's set in their
+    /// configurations.
+    public static var verbosityOverride: LogVerbosity?
     
     /// Flag indicating if all loggers should be forced to use
     /// default components.
@@ -74,7 +50,7 @@ public struct Lumberjack {
         return logger(id: LoggerKey.default)!
     }
         
-    /// A publisher that sends newly logged messages.
+    /// A publisher that sends only logged messages.
     public static var loggedMessagePublisher: AnyPublisher<Message, Never> {
         
         return self.message
@@ -312,6 +288,40 @@ public func PROXY(_ message: Message,
     
     return logger?
         .proxy(message)
+    
+}
+
+/// Logs a trace message.
+///
+/// - Parameters:
+///   - message: The message to log.
+///   - target: The target to send the message to.
+///   - symbol: An override symbol to use for the message.
+///   - category: An override category to use for the message.
+///   - file: The calling function.
+///   - function: The calling function.
+///   - line: The calling line number.
+///
+/// - Returns: The logged message, or `nil` if the target is invalid.
+@discardableResult
+public func TRACE(_ message: String,
+                  target: LogTarget = .default,
+                  symbol: String? = nil,
+                  category: String? = nil,
+                  file: String = #fileID,
+                  function: String = #function,
+                  line: UInt = #line) -> Message? {
+    
+    return LOG(
+        message,
+        target: target,
+        level: .trace,
+        symbol: symbol,
+        category: category,
+        file: file,
+        function: function,
+        line: line
+    )
     
 }
 

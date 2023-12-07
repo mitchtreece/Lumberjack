@@ -14,23 +14,26 @@ public enum LogLevel: Int, Identifiable, Comparable, CaseIterable {
         return lhs.rawValue < rhs.rawValue
     }
     
+    /// A trace log level.
+    case trace    = 0
+    
     /// A debug log level.
-    case debug    = 0
+    case debug    = 1
     
     /// An info log level.
-    case info     = 1
+    case info     = 2
     
     /// A notice log level.
-    case notice   = 2
+    case notice   = 3
     
     /// A warning log level.
-    case warning  = 3
+    case warning  = 4
     
     /// An error log level.
-    case error    = 4
+    case error    = 5
     
     /// A fatal log level.
-    case fatal    = 5
+    case fatal    = 6
     
     /// The log level's identifier.
     public var id: Int {
@@ -40,6 +43,7 @@ public enum LogLevel: Int, Identifiable, Comparable, CaseIterable {
     internal var name: String {
         
         switch self {
+        case .trace:    return "trace"
         case .debug:    return "debug"
         case .info:     return "info"
         case .notice:   return "notice"
@@ -53,6 +57,7 @@ public enum LogLevel: Int, Identifiable, Comparable, CaseIterable {
     internal var symbol: String {
 
         switch self {
+        case .trace:   return "🟤"
         case .debug:   return "⚪️"
         case .info:    return "🟣"
         case .notice:  return "🟡"
@@ -66,12 +71,13 @@ public enum LogLevel: Int, Identifiable, Comparable, CaseIterable {
     internal var systemImageName: String {
         
         switch self {
-        case .debug:   return "0.circle"
-        case .info:    return "1.circle"
-        case .notice:  return "2.circle"
-        case .warning: return "3.circle"
-        case .error:   return "4.circle"
-        case .fatal:   return "5.circle"
+        case .trace:   return "0.circle"
+        case .debug:   return "1.circle"
+        case .info:    return "2.circle"
+        case .notice:  return "3.circle"
+        case .warning: return "4.circle"
+        case .error:   return "5.circle"
+        case .fatal:   return "6.circle"
         }
         
     }

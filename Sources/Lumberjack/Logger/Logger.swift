@@ -113,8 +113,10 @@ public class Logger: Equatable {
         
         for hook in hooks {
             
-            let result = hook
-                .hook(_message)
+            let result = hook.hook(
+                message: _message,
+                from: self
+            )
             
             _message.append(
                 hook: hook.name,
@@ -165,6 +167,37 @@ public class Logger: Equatable {
             line: message.line
         )
         
+    }
+    
+    /// Logs a trace message.
+    ///
+    /// - Parameters:
+    ///   - message: The message to log.
+    ///   - symbol: An override symbol to use for the message.
+    ///   - category: An override category to use for the message.
+    ///   - file: The calling function.
+    ///   - function: The calling function.
+    ///   - line: The calling line number.
+    ///
+    /// - Returns: The logged message.
+    @discardableResult
+    public func trace(_ message: String,
+                      symbol: String? = nil,
+                      category: String? = nil,
+                      file: String = #fileID,
+                      function: String = #function,
+                      line: UInt = #line) -> Message {
+        
+        return log(
+            message,
+            level: .trace,
+            symbol: symbol,
+            category: category,
+            file: file,
+            function: function,
+            line: line
+        )
+                          
     }
     
     /// Logs a debug message.

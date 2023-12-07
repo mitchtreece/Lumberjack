@@ -13,10 +13,14 @@ internal struct _PrintHook: MessageHook {
         return "Print"
     }
     
-    func hook(_ message: Message) -> MessageHookResult {
+    func hook(message: Message,
+              from logger: Logger) -> MessageHookResult {
         
-        if shouldPrint(message) {
+        if shouldPrint(message, from: logger) {
                      
+            // TODO: Migrate to OSLog, or let the user decide
+            // between a logging system: print _or_ OSLog
+            
             print(message.body(formatted: true))
             
             return .next
@@ -27,9 +31,14 @@ internal struct _PrintHook: MessageHook {
         
     }
     
-    private func shouldPrint(_ message: Message) -> Bool {
+    private func shouldPrint(_ message: Message,
+                             from logger: Logger) -> Bool {
         
-        switch Lumberjack.verbosity {
+        let verbosity = (Lumberjack.verbosityOverride != nil) ?
+            Lumberjack.verbosityOverride! :
+            logger.configuration.verbosity
+        
+        switch verbosity {
         case .none:
             
             return false

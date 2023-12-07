@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Lumberjack
-                
+                        
         Lumberjack.buildAndRegister(loggerWithId: "custom") { logger in
             
             logger.symbol = .just("📱")

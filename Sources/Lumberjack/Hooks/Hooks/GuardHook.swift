@@ -24,8 +24,11 @@ public struct GuardHook: MessageHook {
         self.condition = condition
     }
     
-    public func hook(_ message: Message) -> MessageHookResult {
+    public func hook(message: Message,
+                     from logger: Logger) -> MessageHookResult {
+        
         return self.condition(message) ? .next : .stop
+        
     }
     
 }
