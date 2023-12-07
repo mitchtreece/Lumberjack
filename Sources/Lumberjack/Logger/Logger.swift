@@ -162,8 +162,8 @@ public class Logger: Equatable {
             level: message.level,
             symbol: message.symbol,
             category: message.category,
-            file: message.file,
-            function: message.function,
+            file: message.file(format: .raw),
+            function: message.function(format: .raw),
             line: message.line
         )
         

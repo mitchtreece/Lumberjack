@@ -10,6 +10,40 @@ import Foundation
 /// An object representing a message.
 public struct Message {
     
+    /// Type representing a collection of metadata
+    /// associated with a message.
+    typealias Metadata = [String: CustomStringConvertible]
+    
+    /// Representation of the various message 
+    /// file format types.
+    public enum FileFormat {
+        
+        /// A raw (unformatted) file format.
+        case raw
+        
+        /// A file format with an extension.
+        case withExtension
+        
+        /// A file format without an extension.
+        case withoutExtenion
+        
+    }
+    
+    /// Representation of the various message
+    /// function format types.
+    public enum FunctionFormat {
+        
+        /// A raw (unformatted) function format.
+        case raw
+        
+        /// A function format with parameters.
+        case withParameters
+        
+        /// A function format without parameters.
+        case withoutParameters
+        
+    }
+    
     /// Representation of the various message statuses.
     public enum Status: String {
         
@@ -39,7 +73,7 @@ public struct Message {
     /// The message's identifier.
     public let id: String = UUID().uuidString
     
-    /// The message's parent logger identifier.
+    /// The message's source logger identifier.
     public let loggerId: String
     
     /// The message's components.
@@ -113,17 +147,8 @@ public struct Message {
     }
     
     private let body: String
-    internal let file: String
-    internal let function: String
-    
-    private var fileWithExtension: String {
-        
-        return self.file
-            .components(separatedBy: "/")
-            .last ?? "???"
-        
-    }
-    
+    private let file: String
+    private let function: String
     private let dateFormatter: DateFormatter
     private var hooks = [HookEntry]()
     
@@ -159,40 +184,55 @@ public struct Message {
     /// The message's file.
     ///
     /// - Parameters:
-    ///   - ext: Flag indicating if the file's extension should be included.
+    ///   - format: The desired file format.
     ///
-    /// - Returns: A file string with or without an extension.
-    public func file(ext: Bool) -> String {
+    /// - Returns: A file string with a given format.
+    public func file(format: FileFormat) -> String {
         
-        guard ext else {
+        let fileWithExtension = self.file
+            .components(separatedBy: "/")
+            .last ?? "???"
+        
+        switch format {
+        case .raw: return 
             
-            return self.fileWithExtension
+            self.file
+            
+        case .withExtension:
+
+            return fileWithExtension
+            
+        case .withoutExtenion:
+            
+            return fileWithExtension
                 .components(separatedBy: ".")
                 .first ?? "???"
             
         }
-        
-        return self.fileWithExtension
         
     }
     
     /// The message's function.
     ///
     /// - Parameters:
-    ///   - parameters: Flag indicating if the function's parameters should be included.
+    ///   - format: The desired function format.
     ///
-    /// - Returns: A function string with or without parameters.
-    public func function(parameters: Bool) -> String {
+    /// - Returns: A function string with a given format.
+    public func function(format: FunctionFormat) -> String {
         
-        guard parameters else {
+        switch format {
+        case .raw,
+             .withParameters:
+            
+            return self.function
+            
+        case .withoutParameters:
             
             return self.function
                 .components(separatedBy: "(")
                 .first ?? "???"
             
         }
-        
-        return self.function
         
     }
         
@@ -260,14 +300,14 @@ public struct Message {
 
                 formattedMessage += apply(
                     spacing: spacing,
-                    to: file(ext: ext)
+                    to: file(format: ext ? .withExtension : .withoutExtenion)
                 )
                 
             case .function(let parameters, let spacing):
                 
                 formattedMessage += apply(
                     spacing: spacing,
-                    to: function(parameters: parameters)
+                    to: function(format: parameters ? .withParameters : .withoutParameters)
                 )
                 
             case .line(let spacing):
