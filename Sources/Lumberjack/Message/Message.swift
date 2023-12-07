@@ -54,14 +54,20 @@ public struct Message {
     /// The message's category.
     public let category: String?
     
-    /// The message's module.
-    public let module: String
-
     /// The message's line number.
     public let line: UInt
     
     /// The message's date.
     public let date: Date
+    
+    /// The message's module.
+    public var module: String {
+        
+        return self.file
+            .components(separatedBy: "/")
+            .first ?? "???"
+        
+    }
     
     /// The message's date as a formatted string.
     public var dateString: String {
@@ -105,22 +111,30 @@ public struct Message {
         return "\(route) ➜ \(status)"
         
     }
-            
+    
     private let body: String
-    private let fileWithExtension: String
-    private let functionWithParameters: String
+    internal let file: String
+    internal let function: String
+    
+    private var fileWithExtension: String {
+        
+        return self.file
+            .components(separatedBy: "/")
+            .last ?? "???"
+        
+    }
+    
     private let dateFormatter: DateFormatter
     private var hooks = [HookEntry]()
-
+    
     internal init(_ body: String,
                   loggerId: String,
                   components: [Component],
                   level: LogLevel,
                   symbol: String,
                   category: String?,
-                  module: String,
-                  fileWithExtension: String,
-                  functionWithParameters: String,
+                  file: String,
+                  function: String,
                   line: UInt,
                   date: Date,
                   dateFormatter: DateFormatter) {
@@ -133,9 +147,8 @@ public struct Message {
         self.symbol = symbol
         self.category = category
         
-        self.module = module
-        self.fileWithExtension = fileWithExtension
-        self.functionWithParameters = functionWithParameters
+        self.file = file
+        self.function = function
         self.line = line
         
         self.date = date
@@ -173,13 +186,13 @@ public struct Message {
         
         guard parameters else {
             
-            return self.functionWithParameters
+            return self.function
                 .components(separatedBy: "(")
                 .first ?? "???"
             
         }
         
-        return self.functionWithParameters
+        return self.function
         
     }
         
