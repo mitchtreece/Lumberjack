@@ -284,6 +284,37 @@ public func LOG(_ message: String,
     
 }
 
+/// Proxy-logs a message produced by another logger.
+///
+/// - Parameters:
+///   - message: The message to log.
+///   - target: The target to send the message to.
+///
+/// - Returns: The logged message, or `nil` if the target is invalid.
+@discardableResult
+public func PROXY(_ message: Message,
+                  target: LogTarget = .default) -> Message? {
+    
+    var logger: Logger?
+    
+    switch target {
+    case .default:
+        
+        logger = Lumberjack
+            .defaultLogger
+        
+    case .id(let id):
+        
+        logger = Lumberjack
+            .logger(id: id)
+        
+    }
+    
+    return logger?
+        .proxy(message)
+    
+}
+
 /// Logs a debug message.
 ///
 /// - Parameters:

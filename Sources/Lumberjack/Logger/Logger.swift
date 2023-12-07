@@ -88,8 +88,6 @@ public class Logger: Equatable {
         let defaultComponents = Lumberjack.defaultLogger.configuration.components
         let components = Lumberjack.forceDefaultComponents ? defaultComponents : self.configuration.components
         let category = category ?? self.configuration.category
-        let module = file.components(separatedBy: "/").first ?? "???"
-        let fileWithExtension = file.components(separatedBy: "/").last ?? "???"
 
         var _message = Message(
             message,
@@ -98,9 +96,8 @@ public class Logger: Equatable {
             level: level,
             symbol: symbol ?? self.configuration.symbol.asString(for: level),
             category: category,
-            module: module,
-            fileWithExtension: fileWithExtension,
-            functionWithParameters: function,
+            file: file,
+            function: function,
             line: line,
             date: Date(),
             dateFormatter: self.configuration.dateFormatter
@@ -146,6 +143,27 @@ public class Logger: Equatable {
             .publish(_message)
         
         return _message
+        
+    }
+    
+    /// Proxy-logs a message produced by another logger.
+    ///
+    /// - Parameters:
+    ///   - message: The message to log.
+    ///
+    /// - Returns: The logged message.
+    @discardableResult
+    public func proxy(_ message: Message) -> Message {
+        
+        return log(
+            message.body(formatted: false),
+            level: message.level,
+            symbol: message.symbol,
+            category: message.category,
+            file: message.file,
+            function: message.function,
+            line: message.line
+        )
         
     }
     
