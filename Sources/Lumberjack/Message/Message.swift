@@ -12,7 +12,7 @@ public struct Message {
     
     /// Type representing a collection of metadata
     /// associated with a message.
-    typealias Metadata = [String: CustomStringConvertible]
+    public typealias Metadata = [String: CustomStringConvertible]
     
     /// Representation of the various message 
     /// file format types.
@@ -88,6 +88,9 @@ public struct Message {
     /// The message's category.
     public let category: String?
     
+    /// The message's metadata.
+    public let metadata: Metadata?
+    
     /// The message's line number.
     public let line: UInt
     
@@ -158,6 +161,7 @@ public struct Message {
                   level: LogLevel,
                   symbol: String,
                   category: String?,
+                  metadata: Metadata?,
                   file: String,
                   function: String,
                   line: UInt,
@@ -171,6 +175,7 @@ public struct Message {
         
         self.symbol = symbol
         self.category = category
+        self.metadata = metadata
         
         self.file = file
         self.function = function

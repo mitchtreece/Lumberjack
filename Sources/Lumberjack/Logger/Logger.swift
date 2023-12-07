@@ -69,6 +69,7 @@ public class Logger: Equatable {
     ///   - level: The log-level for the message.
     ///   - symbol: An override symbol to use for the message.
     ///   - category: An override category to use for the message.
+    ///   - metadata: Additional data to attach to the message.
     ///   - file: The calling function.
     ///   - function: The calling function.
     ///   - line: The calling line number.
@@ -79,6 +80,7 @@ public class Logger: Equatable {
                     level: LogLevel,
                     symbol: String? = nil,
                     category: String? = nil,
+                    metadata: Message.Metadata? = nil,
                     file: String = #fileID,
                     function: String = #function,
                     line: UInt = #line) -> Message {
@@ -96,6 +98,7 @@ public class Logger: Equatable {
             level: level,
             symbol: symbol ?? self.configuration.symbol.asString(for: level),
             category: category,
+            metadata: metadata,
             file: file,
             function: function,
             line: line,
@@ -162,6 +165,7 @@ public class Logger: Equatable {
             level: message.level,
             symbol: message.symbol,
             category: message.category,
+            metadata: message.metadata,
             file: message.file(format: .raw),
             function: message.function(format: .raw),
             line: message.line
@@ -175,6 +179,7 @@ public class Logger: Equatable {
     ///   - message: The message to log.
     ///   - symbol: An override symbol to use for the message.
     ///   - category: An override category to use for the message.
+    ///   - metadata: Additional data to attach to the message.
     ///   - file: The calling function.
     ///   - function: The calling function.
     ///   - line: The calling line number.
@@ -184,6 +189,7 @@ public class Logger: Equatable {
     public func trace(_ message: String,
                       symbol: String? = nil,
                       category: String? = nil,
+                      metadata: Message.Metadata? = nil,
                       file: String = #fileID,
                       function: String = #function,
                       line: UInt = #line) -> Message {
@@ -193,6 +199,7 @@ public class Logger: Equatable {
             level: .trace,
             symbol: symbol,
             category: category,
+            metadata: metadata,
             file: file,
             function: function,
             line: line
@@ -206,6 +213,7 @@ public class Logger: Equatable {
     ///   - message: The message to log.
     ///   - symbol: An override symbol to use for the message.
     ///   - category: An override category to use for the message.
+    ///   - metadata: Additional data to attach to the message.
     ///   - file: The calling function.
     ///   - function: The calling function.
     ///   - line: The calling line number.
@@ -215,6 +223,7 @@ public class Logger: Equatable {
     public func debug(_ message: String,
                       symbol: String? = nil,
                       category: String? = nil,
+                      metadata: Message.Metadata? = nil,
                       file: String = #fileID,
                       function: String = #function,
                       line: UInt = #line) -> Message {
@@ -224,6 +233,7 @@ public class Logger: Equatable {
             level: .debug,
             symbol: symbol,
             category: category,
+            metadata: metadata,
             file: file,
             function: function,
             line: line
@@ -237,6 +247,7 @@ public class Logger: Equatable {
     ///   - message: The message to log.
     ///   - symbol: An override symbol to use for the message.
     ///   - category: An override category to use for the message.
+    ///   - metadata: Additional data to attach to the message.
     ///   - file: The calling function.
     ///   - function: The calling function.
     ///   - line: The calling line number.
@@ -246,6 +257,7 @@ public class Logger: Equatable {
     public func info(_ message: String,
                      symbol: String? = nil,
                      category: String? = nil,
+                     metadata: Message.Metadata? = nil,
                      file: String = #fileID,
                      function: String = #function,
                      line: UInt = #line) -> Message {
@@ -255,6 +267,7 @@ public class Logger: Equatable {
             level: .info,
             symbol: symbol,
             category: category,
+            metadata: metadata,
             file: file,
             function: function,
             line: line
@@ -268,6 +281,7 @@ public class Logger: Equatable {
     ///   - message: The message to log.
     ///   - symbol: An override symbol to use for the message.
     ///   - category: An override category to use for the message.
+    ///   - metadata: Additional data to attach to the message.
     ///   - file: The calling function.
     ///   - function: The calling function.
     ///   - line: The calling line number.
@@ -277,6 +291,7 @@ public class Logger: Equatable {
     public func notice(_ message: String,
                        symbol: String? = nil,
                        category: String? = nil,
+                       metadata: Message.Metadata? = nil,
                        file: String = #fileID,
                        function: String = #function,
                        line: UInt = #line) -> Message {
@@ -286,6 +301,7 @@ public class Logger: Equatable {
             level: .notice,
             symbol: symbol,
             category: category,
+            metadata: metadata,
             file: file,
             function: function,
             line: line
@@ -299,6 +315,7 @@ public class Logger: Equatable {
     ///   - message: The message to log.
     ///   - symbol: An override symbol to use for the message.
     ///   - category: An override category to use for the message.
+    ///   - metadata: Additional data to attach to the message.
     ///   - file: The calling function.
     ///   - function: The calling function.
     ///   - line: The calling line number.
@@ -308,6 +325,7 @@ public class Logger: Equatable {
     public func warning(_ message: String,
                         symbol: String? = nil,
                         category: String? = nil,
+                        metadata: Message.Metadata? = nil,
                         file: String = #fileID,
                         function: String = #function,
                         line: UInt = #line) -> Message {
@@ -317,6 +335,7 @@ public class Logger: Equatable {
             level: .warning,
             symbol: symbol,
             category: category,
+            metadata: metadata,
             file: file,
             function: function,
             line: line
@@ -330,6 +349,7 @@ public class Logger: Equatable {
     ///   - message: The message to log.
     ///   - symbol: An override symbol to use for the message.
     ///   - category: An override category to use for the message.
+    ///   - metadata: Additional data to attach to the message.
     ///   - file: The calling function.
     ///   - function: The calling function.
     ///   - line: The calling line number.
@@ -339,6 +359,7 @@ public class Logger: Equatable {
     public func error(_ message: String,
                       symbol: String? = nil,
                       category: String? = nil,
+                      metadata: Message.Metadata? = nil,
                       file: String = #fileID,
                       function: String = #function,
                       line: UInt = #line) -> Message {
@@ -348,6 +369,7 @@ public class Logger: Equatable {
             level: .error,
             symbol: symbol,
             category: category,
+            metadata: metadata,
             file: file,
             function: function,
             line: line
@@ -361,12 +383,14 @@ public class Logger: Equatable {
     ///   - message: The message to log.
     ///   - symbol: An override symbol to use for the message.
     ///   - category: An override category to use for the message.
+    ///   - metadata: Additional data to attach to the message.
     ///   - file: The calling function.
     ///   - function: The calling function.
     ///   - line: The calling line number.
     public func fatal(_ message: String,
                       symbol: String? = nil,
                       category: String? = nil,
+                      metadata: Message.Metadata? = nil,
                       file: String = #fileID,
                       function: String = #function,
                       line: UInt = #line,
@@ -377,6 +401,7 @@ public class Logger: Equatable {
             level: .fatal,
             symbol: symbol,
             category: category,
+            metadata: metadata,
             file: file,
             function: function,
             line: line
