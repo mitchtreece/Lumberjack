@@ -19,7 +19,7 @@ public enum LogVerbosity {
     /// A verbosity mode up-to (and including) a log level.
     ///
     /// ```
-    /// .upTo(.notice) == [.debug, .trace, .info, .notice]
+    /// .upTo(.notice) == [.trace, .debug, .info, .notice]
     /// ```
     case upTo(LogLevel)
     

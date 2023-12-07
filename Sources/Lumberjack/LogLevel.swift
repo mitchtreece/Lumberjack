@@ -14,11 +14,11 @@ public enum LogLevel: Int, Identifiable, Comparable, CaseIterable {
         return lhs.rawValue < rhs.rawValue
     }
     
-    /// A debug log level.
-    case debug    = 0
-    
     /// A trace log level.
-    case trace    = 1
+    case trace    = 0
+    
+    /// A debug log level.
+    case debug    = 1
     
     /// An info log level.
     case info     = 2
@@ -43,8 +43,8 @@ public enum LogLevel: Int, Identifiable, Comparable, CaseIterable {
     internal var name: String {
         
         switch self {
-        case .debug:    return "debug"
         case .trace:    return "trace"
+        case .debug:    return "debug"
         case .info:     return "info"
         case .notice:   return "notice"
         case .warning:  return "warning"
@@ -57,8 +57,8 @@ public enum LogLevel: Int, Identifiable, Comparable, CaseIterable {
     internal var symbol: String {
 
         switch self {
-        case .debug:   return "⚪️"
         case .trace:   return "🟤"
+        case .debug:   return "⚪️"
         case .info:    return "🟣"
         case .notice:  return "🟡"
         case .warning: return "🟠"
@@ -71,8 +71,8 @@ public enum LogLevel: Int, Identifiable, Comparable, CaseIterable {
     internal var systemImageName: String {
         
         switch self {
-        case .debug:   return "0.circle"
-        case .trace:   return "1.circle"
+        case .trace:   return "0.circle"
+        case .debug:   return "1.circle"
         case .info:    return "2.circle"
         case .notice:  return "3.circle"
         case .warning: return "4.circle"

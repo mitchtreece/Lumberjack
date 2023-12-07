@@ -65,6 +65,8 @@ as-well-as equivalent logger instance counterparts:
 
 ```swift
 LOG(...)    → logger.log(...)
+PROXY(...)  → logger.proxy(...)
+TRACE(...)  → logger.trace(...)
 DEBUG(...)  → logger.debug(...)
 INFO(...)   → logger.info(...)
 NOTICE(...) → logger.notice(...)
@@ -81,7 +83,7 @@ The top-level `Lumberjack` object houses several global settings, as-well-as eas
 
 ```swift
 Lumberjack
-    .verbosity = .just(.error)
+    .verbosityOverride = .just(.error)
 
 Lumberjack
     .defaultLogger
@@ -153,6 +155,7 @@ class CustomViewController: UIViewController {
 
         self.logger = Logger { make in
 
+            make.verbosity = .full
             make.symbol = .just("📱")
             make.category = "CustomView"
             make.components = .simple
@@ -245,7 +248,8 @@ import Lumberjack
 
 struct SaveMessageHook: MessageHook {
 
-    func hook(_ message: Message) -> MessageHookResult {
+    func hook(message: Message, 
+              from logger: Logger) -> MessageHookResult {
 
         save(message)
         return .next
@@ -292,7 +296,8 @@ import Lumberjack
 
 struct PrintMessageHook: MessageHook {
 
-    func hook(_ message: Message) -> MessageHookResult {
+    func hook(message: Message, 
+              from logger: Logger) -> MessageHookResult {
 
         if shouldPrint(message) {
 

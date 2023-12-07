@@ -291,6 +291,40 @@ public func PROXY(_ message: Message,
     
 }
 
+/// Logs a trace message.
+///
+/// - Parameters:
+///   - message: The message to log.
+///   - target: The target to send the message to.
+///   - symbol: An override symbol to use for the message.
+///   - category: An override category to use for the message.
+///   - file: The calling function.
+///   - function: The calling function.
+///   - line: The calling line number.
+///
+/// - Returns: The logged message, or `nil` if the target is invalid.
+@discardableResult
+public func TRACE(_ message: String,
+                  target: LogTarget = .default,
+                  symbol: String? = nil,
+                  category: String? = nil,
+                  file: String = #fileID,
+                  function: String = #function,
+                  line: UInt = #line) -> Message? {
+    
+    return LOG(
+        message,
+        target: target,
+        level: .trace,
+        symbol: symbol,
+        category: category,
+        file: file,
+        function: function,
+        line: line
+    )
+    
+}
+
 /// Logs a debug message.
 ///
 /// - Parameters:
