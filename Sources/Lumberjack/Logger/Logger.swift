@@ -113,8 +113,10 @@ public class Logger: Equatable {
         
         for hook in hooks {
             
-            let result = hook
-                .hook(_message)
+            let result = hook.hook(
+                message: _message,
+                from: self
+            )
             
             _message.append(
                 hook: hook.name,

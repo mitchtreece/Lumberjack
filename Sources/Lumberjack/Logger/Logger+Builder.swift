@@ -13,6 +13,9 @@ public extension Logger /* Builder */ {
     /// configurable components of a logger.
     struct Builder {
         
+        /// The logger's verbosity mode.
+        public var verbosity: LogVerbosity?
+        
         /// The logger's symbol.
         public var symbol: LogSymbol?
         
@@ -55,6 +58,7 @@ public extension Logger /* Builder */ {
         let defaultConfig = Configuration()
         
         var config = Configuration()
+        config.verbosity = builder.verbosity ?? defaultConfig.verbosity
         config.symbol = builder.symbol ?? defaultConfig.symbol
         config.category = builder.category ?? defaultConfig.category
         config.components = builder.components ?? defaultConfig.components

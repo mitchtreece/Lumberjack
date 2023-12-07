@@ -19,11 +19,13 @@ public protocol MessageHook {
     ///
     /// - Parameters:
     ///   - message: The hooked message.
+    ///   - logger: The source logger instance.
     ///
     /// - Returns: A continuation result that either passes the
     /// message onto additional hooks, _or_ stops the chain and
     /// prevents the message from being logged.
-    func hook(_ message: Message) -> MessageHookResult
+    func hook(message: Message,
+              from logger: Logger) -> MessageHookResult
     
 }
 

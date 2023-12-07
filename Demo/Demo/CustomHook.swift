@@ -9,7 +9,8 @@ import Lumberjack
 
 struct CustomHook: MessageHook {
     
-    func hook(_ message: Message) -> MessageHookResult {
+    func hook(message: Message,
+              from logger: Logger) -> MessageHookResult {
                 
         if ((0...10).randomElement() ?? 0) == 10 {
             print("🎲 [LUCKY] Custom hook says: \"you feelin lucky punk?\" 🤠")
