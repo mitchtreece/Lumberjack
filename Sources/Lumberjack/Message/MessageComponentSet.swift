@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  MessageComponentSet.swift
+//  Lumberjack
 //
 //  Created by Mitch Treece on 6/29/23.
 //
@@ -40,7 +40,7 @@ public struct MessageComponentSet {
     /// A default set of message components.
     ///
     /// ```
-    /// {symbol} [{level}] <{category}> {timestamp} {module}.{file}::{line} ➡️ {message}
+    /// {symbol} [{level}] <{category}> {timestamp} {module}.{file}::{line} {delimiter} {message}
     /// ```
     public static var `default`: Self {
         
@@ -76,7 +76,7 @@ public struct MessageComponentSet {
     /// A default set of message components without a timestamp.
     ///
     /// ```
-    /// {symbol} [{level}] <{category}> {module}.{file}::{line} ➡️ {message}
+    /// {symbol} [{level}] <{category}> {module}.{file}::{line} {delimiter} {message}
     /// ```
     public static var defaultNoTimestamp: Self {
      
@@ -110,7 +110,7 @@ public struct MessageComponentSet {
     /// A simple set of message components.
     ///
     /// ```
-    /// {symbol} [{level}] <{category}> ➡️ {message}
+    /// {symbol} [{level}] <{category}> {delimiter} {message}
     /// ```
     public static var simple: Self {
         
