@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  LogVerbosity.swift
+//  Lumberjack
 //
 //  Created by Mitch Treece on 12/7/23.
 //

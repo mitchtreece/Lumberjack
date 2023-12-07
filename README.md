@@ -57,7 +57,7 @@ Lumberjack
 
 // Result
 
-"⚪️ [DEBUG] 2023-06-30T15:06:37.099 Demo.AppDelegate::46 ➡️ Hello, world!"
+"⚪️ [DEBUG] 15:06:37.099 Demo.AppDelegate::46 >> Hello, world!"
 ```
 
 Lumberjack provides several global log-level functions, 
@@ -211,7 +211,7 @@ This results in the following format:
 ... and example message:
 
 ```swift
-"⚪️ [DEBUG] <Example> 2023-06-30T15:06:37.099 Demo.AppDelegate::46 ➡️ Hello, world!"
+"⚪️ [DEBUG] <Example> 15:06:37.099 Demo.AppDelegate::46 >> Hello, world!"
 ```
 
 The individual component values are determined based on the logger's configuration, as-well-as any passed in logging function overrides.
@@ -227,7 +227,7 @@ let logger = Logger { make in
 logger
     .debug("no overrides") 
     
-// => "📱 [DEBUG] <Example> 2023-06-30T15:06:37.099 Demo.AppDelegate::46 ➡️ no overrides"
+// => "📱 [DEBUG] <Example> 15:06:37.099 Demo.AppDelegate::46 >> no overrides"
 
 logger.info(
     "some overrides", 
@@ -235,7 +235,7 @@ logger.info(
     category: "Star"
 )
 
-// => "⭐️ [INFO] <Star> 2023-06-30T15:06:37.099 Demo.AppDelegate::46 ➡️ some overrides"
+// => "⭐️ [INFO] <Star> 15:06:37.099 Demo.AppDelegate::46 >> some overrides"
 
 ```
 

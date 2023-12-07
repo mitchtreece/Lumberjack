@@ -36,11 +36,11 @@ public struct Lumberjack {
     /// The default logging message delimiter.
     ///
     /// This is the symbol (or string) that separates info
-    /// components from the actual message. i.e. "➡️" or "➜".
+    /// components from the actual message. i.e. "➡️", ">>", or "➜".
     ///
     /// When using a custom component setup, this delimiter
     /// is ignored.
-    public static var defaultMessageDelimiter: String = "➡️"
+    public static var defaultMessageDelimiter: String = ">>"
     
     /// The default logger instance.
     ///

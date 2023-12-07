@@ -50,7 +50,7 @@ public extension Logger /* Configuration */ {
                     symbol: LogSymbol = .default,
                     category: String? = nil,
                     components: MessageComponentSet = .default,
-                    timestampFormat: String = "yyyy-MM-dd'T'HH:mm:ss.SSS",
+                    timestampFormat: String = "HH:mm:ss.SSS",
                     hooks: [any MessageHook] = []) {
             
             self.verbosity = verbosity
