@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.7
 
 import PackageDescription
 
@@ -7,7 +7,7 @@ let package = Package(
     platforms: [
         
         .iOS(.v15),
-        .macOS(.v10_15)
+        .macOS(.v13)
     
     ],
     products: [
@@ -27,6 +27,5 @@ let package = Package(
             path: "Sources/Lumberjack"
         )
 
-    ],
-    swiftLanguageVersions: [.v5]
+    ]
 )
