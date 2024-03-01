@@ -3,9 +3,10 @@
 <div align="center">
 
 ![Version](https://img.shields.io/badge/Version-1.4.1-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
-![iOS](https://img.shields.io/badge/iOS-15+-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
-![Swift](https://img.shields.io/badge/Swift-5-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
 ![Xcode](https://img.shields.io/badge/Xcode-15-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
+![Swift](https://img.shields.io/badge/Swift-5.7-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
+![iOS](https://img.shields.io/badge/iOS-15+-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
+![macOS](https://img.shields.io/badge/macOS-13+-FFE8B1.svg?style=for-the-badge&labelColor=FC8A65)
 
 </div>
 
@@ -17,9 +18,11 @@ Lightweight Swift logging library 🪵🪓
 
 ### SPM
 
-The easiest way to get started is by installing via Xcode. Just add Lumberjack as a Swift package & choose the modules you want.
+The easiest way to get started is by installing via Xcode. 
+Just add Lumberjack as a Swift package & choose the modules you want.
 
-If you're adding Lumberjack as a dependency of your own Swift package, just add a package entry to your dependencies.
+If you're adding Lumberjack as a dependency of your own Swift package, 
+just add a package entry to your dependencies.
 
 ```swift
 .package(
